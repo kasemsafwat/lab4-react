@@ -13,6 +13,11 @@ import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
+import Men from "./components/Men/Men";
+import AllProducts from "./components/AllProducts/AllProducts";
+import Jewelery from "./components/Jewelery/Jewelery";
+import Electronics from "./components/Electronics/Electronics";
+import Women from "./components/Women/Women";
 
 function App() {
   const routs = createBrowserRouter([
@@ -27,6 +32,13 @@ function App() {
               <Home />
             </ProtectedRoutes>
           ),
+          children: [
+            { path: "", element: <AllProducts /> },
+            { path: "men", element: <Men /> },
+            { path: "jewelery", element: <Jewelery /> },
+            { path: "electronics", element: <Electronics /> },
+            { path: "women", element: <Women /> },
+          ],
         },
         {
           path: "about",
@@ -59,7 +71,6 @@ function App() {
           path: "settings",
           element: (
             <ProtectedRoutes>
-              {" "}
               <Settings />
             </ProtectedRoutes>
           ),
@@ -68,7 +79,6 @@ function App() {
             { path: "mobile", element: <Mobile /> },
           ],
         },
-
         { path: "*", element: <NotFound /> },
       ],
     },
