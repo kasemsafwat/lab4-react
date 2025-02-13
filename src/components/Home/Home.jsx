@@ -41,7 +41,13 @@ export default function Home() {
   return (
     <>
       <div className="row my-5 gy-5">
-        {products.length == 0 ? (<Loader></Loader>) : products.map(product => <ProductItem product={product}></ProductItem>)}
+        {products.length === 0 ? (
+          <Loader />
+        ) : (
+          products.map((product) => (
+            <ProductItem key={product.id} product={product} />
+          ))
+        )}
       </div>
     </>
   );

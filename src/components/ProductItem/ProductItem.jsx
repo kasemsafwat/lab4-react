@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 
+import { Link } from "react-router-dom";
+
 
 export default function ProductItem({product}) {
   return (
 
     <div key={product.id} className="col-md-3">
-      <div className="bg-white text-dark p-3 rounded-3">
+      <Link to={`/product-details/${product.id}`} className="d-block text-decoration-none bg-white text-dark p-3 rounded-3">
         <img
 
           src={product.image}
@@ -22,7 +24,7 @@ export default function ProductItem({product}) {
             <i className="fa fa-star text-warning"></i> {product.rating.rate}
           </p>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

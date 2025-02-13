@@ -1,19 +1,22 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { TokenContext } from "../../Context/TokenContext";
 
 
 export default function Login() {
 
   const [apiError, setApiError] = useState(null);
 
+  let { setToken } = useContext(TokenContext);
+
   let navigate = useNavigate();
 
   const initialvalue = {
-    email: "",
-    password: "",
+    email: "malak@gmail.com",
+    password: "Aasd",
   };
 
   const validationSchema = Yup.object().shape({
@@ -34,6 +37,8 @@ export default function Login() {
       );
       console.log(data);
       if (data.message == "Welcome to saraha app") {
+        localStorage.setItem("userToken",data.token)
+        setToken(data.token);
         navigate("/home");
       }
     } catch (error) {

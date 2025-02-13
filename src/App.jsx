@@ -11,6 +11,8 @@ import Web from "./components/Web/Web";
 import Mobile from "./components/Mobile/Mobile";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
+import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+import ProductDetails from "./components/ProductDetails/ProductDetails";
 
 function App() {
   const routs = createBrowserRouter([
@@ -18,13 +20,50 @@ function App() {
       path: "",
       element: <LayOut />,
       children: [
-        { path: "home", element: <Home /> },
-        { path: "about", element: <About /> },
-        { path: "contact", element: <Contact /> },
+        {
+          path: "home",
+          element: (
+            <ProtectedRoutes>
+              <Home />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "about",
+          element: (
+            <ProtectedRoutes>
+              <About />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "product-details/:id",
+          element: (
+            <ProtectedRoutes>
+              <ProductDetails />
+            </ProtectedRoutes>
+          ),
+        },
+        {
+          path: "contact",
+          element: (
+            <ProtectedRoutes>
+              <Contact />
+            </ProtectedRoutes>
+          ),
+        },
         { path: "register", element: <Register /> },
         { path: "login", element: <Login /> },
-        
-        {path: "settings", element: <Settings />, children: [
+
+        {
+          path: "settings",
+          element: (
+            <ProtectedRoutes>
+              {" "}
+              <Settings />
+            </ProtectedRoutes>
+          ),
+          children: [
             { path: "", element: <Web /> },
             { path: "mobile", element: <Mobile /> },
           ],
